@@ -26,3 +26,7 @@ yum install -y docker-io
 # we want nslookup 
 yum install -y bind-utils
 
+# install httpd-tools to get htpasswd
+# install pwgen to generate password
+yum install -y httpd-tools pwgen
+
