@@ -23,3 +23,6 @@ yum install -y mlocate
 
 yum install -y docker-io
 
+# we want nslookup 
+yum install -y bind-utils
+
