@@ -18,6 +18,7 @@ yum update -y
 yum install -y fail2ban
 service fail2ban restart
 
+yum install -y htop
 yum install -y git
 yum install -y mlocate
 
