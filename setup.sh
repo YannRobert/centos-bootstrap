@@ -30,3 +30,7 @@ yum install -y bind-utils
 # install pwgen to generate password
 yum install -y httpd-tools pwgen
 
+# install yum-cron to enable automatic updates 
+yum -y install yum-cron
+systemctl restart yum-cron.service
+
