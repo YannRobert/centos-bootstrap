@@ -2,6 +2,7 @@
 
 # script to initialize or update a CentOS instance
 # bootstraps the setup of a newly provisionned VM
+# WARNING : you shoud make sure you added your public key to ~/.ssh/authorized_keys before doing that
 
 set -e
 
@@ -36,4 +37,10 @@ yum install -y httpd-tools pwgen
 yum -y install yum-cron
 chkconfig yum-cron on
 systemctl restart yum-cron.service
+
+# Authentication using Key Pair should be allowed
+perl -i -pe 's/^PubkeyAuthentication no/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+# and authentication using Password should be forbidden
+perl -i -pe 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+service sshd restart
 
