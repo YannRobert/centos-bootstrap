@@ -16,7 +16,8 @@ set -e
 yum update -y
 
 yum install -y fail2ban
-service fail2ban restart
+chkconfig fail2ban on
+systemctl restart fail2ban.service
 
 yum install -y htop
 yum install -y git
@@ -33,5 +34,6 @@ yum install -y httpd-tools pwgen
 
 # install yum-cron to enable automatic updates 
 yum -y install yum-cron
+chkconfig yum-cron on
 systemctl restart yum-cron.service
 
