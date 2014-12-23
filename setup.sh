@@ -25,6 +25,8 @@ yum install -y git
 yum install -y mlocate
 
 yum install -y docker-io
+# start the docker service on boot
+chkconfig docker on 
 
 # we want nslookup 
 yum install -y bind-utils
