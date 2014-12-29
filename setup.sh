@@ -6,6 +6,9 @@
 
 set -e
 
+# set the system to use UTC timezone
+ln -s /usr/share/zoneinfo/UTC /etc/localtime
+
 yum update -y
 
 # install EPEL, if already installed, should not exit the script
