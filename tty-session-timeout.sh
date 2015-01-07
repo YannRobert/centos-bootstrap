@@ -5,6 +5,6 @@ then
    TMOUT=300;
    readonly TMOUT;
    export TMOUT;
-   echo "Session will timeout in $($TMOUT/60) minutes"
+   echo "Session will timeout in $TMOUT seconds"
 fi
 
