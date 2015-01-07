@@ -27,6 +27,9 @@ yum install -y htop
 yum install -y git
 yum install -y mlocate
 
+# some basic network tools (not installed by default in CentOS minimal installation)
+yum install -y net-tools nc
+
 yum install -y docker-io
 # start the docker service on boot
 chkconfig docker on 
@@ -48,4 +51,7 @@ perl -i -pe 's/^PubkeyAuthentication no/PubkeyAuthentication yes/' /etc/ssh/sshd
 # and authentication using Password should be forbidden
 perl -i -pe 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 service sshd restart
+
+# disable the bell (on the console don't ring the bell on user input alert)
+perl -i -pe 's/^#set bell-style none/set bell-style none/' /etc/inputrc
 
