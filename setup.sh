@@ -2,6 +2,8 @@
 
 # script to initialize or update a CentOS instance
 # bootstraps the setup of a newly provisionned VM
+# this script should also be working on a Fedora distribution.
+
 # WARNING : you shoud make sure you added your public key to ~/.ssh/authorized_keys before doing that
 
 set -e
@@ -11,9 +13,17 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 yum update -y
 
+
+DISTRIB_NAME=$(awk '{print $1}' /etc/redhat-release)
+
+# only install EPEL repository on CentOS distribution
+# on other distributions like on Fedora it must be avoided
+if test "$DISTRIB_NAME" == "CentOS"
+then
 # install EPEL, if already installed, should not exit the script
 set +e
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+fi
 
 set -e
 
