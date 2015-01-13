@@ -27,6 +27,9 @@ fi
 
 set -e
 
+# other way to install the EPEL repository
+yum install -y epel-release
+
 yum update -y
 
 yum install -y fail2ban
