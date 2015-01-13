@@ -39,6 +39,7 @@ systemctl restart fail2ban.service
 yum install -y htop
 yum install -y git
 yum install -y mlocate
+yum install -y curl wget
 
 # some basic network tools (not installed by default in CentOS minimal installation)
 yum install -y net-tools nc
