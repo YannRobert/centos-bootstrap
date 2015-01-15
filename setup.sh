@@ -47,7 +47,7 @@ yum install -y net-tools nc
 yum install -y docker-io
 # start the docker service on boot
 chkconfig docker on 
-sudo systemctl start docker.service
+{ systemctl start docker.service } || { echo "docker.service failed to start (it may be normal on some VPS managed by OpenVZ)" }
 
 # we want nslookup 
 yum install -y bind-utils
