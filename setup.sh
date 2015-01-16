@@ -62,9 +62,9 @@ yum install -y httpd-tools pwgen
 
 # install yum-cron to enable automatic updates 
 yum -y install yum-cron
+perl -i -pe 's/^apply_updates = no/apply_updates = yes/' /etc/yum/yum-cron.conf
 chkconfig yum-cron on
 systemctl restart yum-cron.service
-perl -i -pe 's/^apply_updates = no/apply_updates = yes/' /etc/yum/yum-cron.conf
 
 # Authentication using Key Pair should be allowed
 perl -i -pe 's/^PubkeyAuthentication no/PubkeyAuthentication yes/' /etc/ssh/sshd_config
