@@ -20,15 +20,14 @@ DISTRIB_NAME=$(awk '{print $1}' /etc/redhat-release)
 # on other distributions like on Fedora it must be avoided
 if test "$DISTRIB_NAME" == "CentOS"
 then
-# install EPEL, if already installed, should not exit the script
-set +e
-rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+   ## install EPEL, if already installed, should not exit the script
+   #set +e
+   #rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+   #set -e
+
+   # other way to install the EPEL repository
+   yum install -y epel-release
 fi
-
-set -e
-
-# other way to install the EPEL repository
-yum install -y epel-release
 
 yum update -y
 
