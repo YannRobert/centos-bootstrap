@@ -69,6 +69,8 @@ systemctl restart yum-cron.service
 perl -i -pe 's/^PubkeyAuthentication no/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 # and authentication using Password should be forbidden
 perl -i -pe 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+# make sure sshd service starts on boot
+chkconfig sshd on
 service sshd restart
 
 # disable the bell (on the console don't ring the bell on user input alert)
