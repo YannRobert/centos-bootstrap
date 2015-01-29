@@ -14,3 +14,8 @@ curl https://raw.githubusercontent.com/YannRobert/centos-bootstrap/master/setup.
 
 ```
 
+You can patch the setup script on-the-fly to change a few things if you need to, for instance to set the timezone
+```shell
+curl https://raw.githubusercontent.com/YannRobert/centos-bootstrap/master/setup.sh | sed 's/zoneinfo\/UTC/zoneinfo\/Europe\/Paris/g' | sh
+
+```
