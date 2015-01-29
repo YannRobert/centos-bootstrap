@@ -76,3 +76,9 @@ service sshd restart
 # disable the bell (on the console don't ring the bell on user input alert)
 perl -i -pe 's/^#set bell-style none/set bell-style none/' /etc/inputrc
 
+# installing pip
+yum install -y python-pip
+
+# install the Amazon WebServices Command Line Interface
+pip install awscli
+
