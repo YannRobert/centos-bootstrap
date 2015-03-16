@@ -52,6 +52,11 @@ chkconfig docker on
    echo "docker.service failed to start (it may be normal on some VPS managed by OpenVZ)" 
 }
 
+# install docker-compose (previously known as fig)
+curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+curl -L https://raw.githubusercontent.com/docker/compose/1.1.0/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+
 # we want nslookup 
 yum install -y bind-utils
 
