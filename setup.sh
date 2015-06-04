@@ -99,6 +99,11 @@ perl -i -pe 's/^#set bell-style none/set bell-style none/' /etc/inputrc
 # installing pip
 $PM install -y python-pip
 
+# upgrading pip
+pip install --upgrade pip
+
 # install the Amazon WebServices Command Line Interface
-pip install awscli
+pip install --upgrade awscli
+
+echo "Finished successfully"
 
