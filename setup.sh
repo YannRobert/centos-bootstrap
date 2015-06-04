@@ -59,9 +59,18 @@ chkconfig docker on
 }
 
 # install docker-compose (previously known as fig)
-curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-curl -L https://raw.githubusercontent.com/docker/compose/1.2.0/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+DOCKER_COMPOSE_VERSION=1.2.0
+if test ! -f /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
+then
+   curl -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
+   chmod +x /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
+fi
+ln -sf /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} /usr/local/bin/docker-compose
+
+if test ! -f /usr/local/bin/docker-compose
+then
+   curl -o /etc/bash_completion.d/docker-compose -L https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VERSION}/contrib/completion/bash/docker-compose
+fi
 
 # we want nslookup 
 $PM install -y bind-utils
