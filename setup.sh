@@ -11,8 +11,14 @@ set -e
 # set the system to use UTC timezone
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
-yum update -y
+# if dnf is available, then use dnf, otherwise use yum, as the package manager command
+PM=yum
+if test -f /usr/bin/dnf
+then
+   PM=dnf
+fi
 
+$PM update -y
 
 DISTRIB_NAME=$(awk '{print $1}' /etc/redhat-release)
 
@@ -26,24 +32,24 @@ then
    #set -e
 
    # other way to install the EPEL repository
-   yum install -y epel-release
+   $PM install -y epel-release
 fi
 
-yum update -y
+$PM update -y
 
-yum install -y fail2ban
+$PM install -y fail2ban
 chkconfig fail2ban on
 systemctl restart fail2ban.service
 
-yum install -y htop
-yum install -y git
-yum install -y mlocate
-yum install -y curl wget
+$PM install -y htop
+$PM install -y git
+$PM install -y mlocate
+$PM install -y curl wget
 
 # some basic network tools (not installed by default in CentOS minimal installation)
-yum install -y net-tools nc
+$PM install -y net-tools nc
 
-yum install -y docker-io
+$PM install -y docker-io
 # start the docker service on boot
 chkconfig docker on 
 { 
@@ -58,11 +64,11 @@ chmod +x /usr/local/bin/docker-compose
 curl -L https://raw.githubusercontent.com/docker/compose/1.2.0/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
 
 # we want nslookup 
-yum install -y bind-utils
+$PM install -y bind-utils
 
 # install httpd-tools to get htpasswd
 # install pwgen to generate password
-yum install -y httpd-tools pwgen
+$PM install -y httpd-tools pwgen
 
 # install yum-cron to enable automatic updates 
 yum -y install yum-cron
@@ -82,7 +88,7 @@ service sshd restart
 perl -i -pe 's/^#set bell-style none/set bell-style none/' /etc/inputrc
 
 # installing pip
-yum install -y python-pip
+$PM install -y python-pip
 
 # install the Amazon WebServices Command Line Interface
 pip install awscli
