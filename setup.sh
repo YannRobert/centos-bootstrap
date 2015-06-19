@@ -72,6 +72,15 @@ then
    curl -o /etc/bash_completion.d/docker-compose -L https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VERSION}/contrib/completion/bash/docker-compose
 fi
 
+# install docker-machine
+DOCKER_MACHINE_VERSION=0.3.0
+if test ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+then
+   curl -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v0.3.0/docker-machine_`uname -s`-`uname -m`
+   chmod +x /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+fi
+ln -sf /usr/local/bin/docker-machine-${DOCKER_COMPOSE_VERSION} /usr/local/bin/docker-machine
+
 # we want nslookup 
 $PM install -y bind-utils
 
