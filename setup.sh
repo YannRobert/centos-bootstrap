@@ -7,6 +7,7 @@
 # WARNING : you shoud make sure you added your public key to ~/.ssh/authorized_keys before doing that
 
 set -e
+set -x
 
 # set the system to use UTC timezone
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
@@ -62,7 +63,7 @@ chkconfig docker on
 DOCKER_COMPOSE_VERSION=1.2.0
 if test ! -f /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 then
-   curl -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
+   curl --fail -v -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
    chmod +x /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 fi
 ln -sf /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} /usr/local/bin/docker-compose
@@ -76,10 +77,10 @@ fi
 DOCKER_MACHINE_VERSION=0.3.0
 if test ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 then
-   curl -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v0.3.0/docker-machine_`uname -s`-`uname -m`
+   curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine_linux-amd64
    chmod +x /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 fi
-ln -sf /usr/local/bin/docker-machine-${DOCKER_COMPOSE_VERSION} /usr/local/bin/docker-machine
+ln -sf /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} /usr/local/bin/docker-machine
 
 # we want nslookup 
 $PM install -y bind-utils
