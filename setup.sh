@@ -47,6 +47,10 @@ $PM install -y git
 $PM install -y mlocate
 $PM install -y curl wget
 
+$PM install -y ntp
+chkconfig ntpd on
+service ntpd restart
+
 # some basic network tools (not installed by default in CentOS minimal installation)
 $PM install -y net-tools nc
 
