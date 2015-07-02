@@ -36,4 +36,6 @@ done
 
 rm ${NAMESERVERS_DEF}
 
+service network restart
+
 echo "Successfully set $# nameservers"
