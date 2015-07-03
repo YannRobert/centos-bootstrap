@@ -33,6 +33,7 @@ fi
 
 ./configure-nameservers.sh 127.0.0.1
 
+chkconfig named on
 service named restart
 
 echo "Finished"
