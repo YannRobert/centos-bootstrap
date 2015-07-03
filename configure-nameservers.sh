@@ -24,18 +24,29 @@ do
     echo "DNS${INDEX}=${var}" >> ${NAMESERVERS_DEF}
 done
 
-IF_FILES=$(ls /etc/sysconfig/network-scripts/ifcfg-eth*)
+IF_FILES=$(ls /etc/sysconfig/network-scripts/ifcfg-eth* || true)
 
-for FILE in $IF_FILES
-do
-   echo "Removing DNS from file $FILE"
-   sed -i '/^DNS[1-9]=/d' $FILE
-   echo "Adding DNS in file $FILE"
-   cat ${NAMESERVERS_DEF} >> $FILE
-done
+if test -z "$IF_FILES"
+then
+	echo "# generated with $0 on `date` by $USER" > /etc/resolv.conf
+	for var in "$@"
+	do
+	    echo "nameserver ${var}" >> /etc/resolv.conf
+	done
+else
+	for FILE in $IF_FILES
+	do
+	   echo "Removing DNS from file $FILE"
+	   sed -i '/^DNS[1-9]=/d' $FILE
+	   echo "Adding DNS in file $FILE"
+	   cat ${NAMESERVERS_DEF} >> $FILE
+	done
+fi
+
 
 rm ${NAMESERVERS_DEF}
 
 service network restart
 
 echo "Successfully set $# nameservers"
+
