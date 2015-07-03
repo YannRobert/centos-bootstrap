@@ -33,7 +33,7 @@ fi
 
 ./configure-nameservers.sh 127.0.0.1
 
-#service named restart
+service named restart
 
 echo "Finished"
 
