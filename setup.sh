@@ -64,7 +64,7 @@ chkconfig docker on
 }
 
 # install docker-compose (previously known as fig)
-DOCKER_COMPOSE_VERSION=1.2.0
+DOCKER_COMPOSE_VERSION=1.3.3
 if test ! -f /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 then
    curl --fail -v -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
