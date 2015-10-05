@@ -22,7 +22,7 @@ gpgcheck=1
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
 
-rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm || true
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
 
 cat packages-list-desktop | xargs $PM install -y
