@@ -80,7 +80,7 @@ then
 fi
 
 # install docker-machine
-DOCKER_MACHINE_VERSION=0.3.0
+DOCKER_MACHINE_VERSION=0.4.1
 if test ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 then
    curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine_linux-amd64
