@@ -55,6 +55,8 @@ service ntpd restart
 $PM install -y net-tools nc
 
 $PM install -y docker-io
+groupadd docker
+gpasswd -a ${USER} docker
 # start the docker service on boot
 chkconfig docker on 
 { 
