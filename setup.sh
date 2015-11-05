@@ -65,8 +65,8 @@ chkconfig docker on
    echo "docker.service failed to start (it may be normal on some VPS managed by OpenVZ)" 
 }
 
-# install docker-compose (previously known as fig)
-DOCKER_COMPOSE_VERSION=1.4.2
+# install docker-compose
+DOCKER_COMPOSE_VERSION=1.5.0
 if test ! -f /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 then
    curl --fail -v -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
@@ -80,13 +80,17 @@ then
 fi
 
 # install docker-machine
-DOCKER_MACHINE_VERSION=0.4.1
-if test ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+DOCKER_MACHINE_VERSION=0.5.0
+if test ! -f /usr/local/bin/docker-machine -o ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}.zip
 then
-   curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine_linux-amd64
-   chmod +x /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+   curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}.zip -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine_linux-amd64.zip
+   rm -rf /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+   mkdir -p /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+   unzip /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}.zip -d /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+   chmod +x /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}/docker-machine*
+   mv /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}/docker-machine* /usr/local/bin/
+   rmdir /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 fi
-ln -sf /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} /usr/local/bin/docker-machine
 
 # we want nslookup 
 $PM install -y bind-utils
