@@ -43,6 +43,7 @@ $PM install -y htop
 $PM install -y git
 $PM install -y mlocate
 $PM install -y curl wget
+$PM install -y unzip
 
 $PM install -y ntp
 chkconfig ntpd on
