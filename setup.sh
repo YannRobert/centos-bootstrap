@@ -64,7 +64,7 @@ chkconfig docker on
 }
 
 # install docker-compose
-DOCKER_COMPOSE_VERSION=1.5.0
+DOCKER_COMPOSE_VERSION=1.5.2
 if test ! -f /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 then
    curl --fail -v -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
@@ -78,7 +78,7 @@ then
 fi
 
 # install docker-machine
-DOCKER_MACHINE_VERSION=0.5.0
+DOCKER_MACHINE_VERSION=0.5.2
 if test ! -f /usr/local/bin/docker-machine -o ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}.zip
 then
    curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}.zip -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine_linux-amd64.zip
@@ -122,6 +122,9 @@ pip install --upgrade pip
 
 # install the Amazon WebServices Command Line Interface
 pip install --upgrade awscli
+
+# install shyaml in order to read YAML files with shell command line (https://github.com/0k/shyaml)
+pip install --upgrade shyaml
 
 echo "Finished successfully"
 
