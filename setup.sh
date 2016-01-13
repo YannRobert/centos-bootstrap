@@ -68,8 +68,8 @@ DOCKER_COMPOSE_VERSION=1.5.2
 if test ! -f /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 then
    curl --fail -v -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
-   chmod +x /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 fi
+chmod +x /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 ln -sf /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} /usr/local/bin/docker-compose
 
 if test ! -f /usr/local/bin/docker-compose
@@ -78,17 +78,13 @@ then
 fi
 
 # install docker-machine
-DOCKER_MACHINE_VERSION=0.5.2
-if test ! -f /usr/local/bin/docker-machine -o ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}.zip
+DOCKER_MACHINE_VERSION=0.5.6
+if test ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 then
-   curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}.zip -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine_linux-amd64.zip
-   rm -rf /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
-   mkdir -p /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
-   unzip /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}.zip -d /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
-   chmod +x /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}/docker-machine*
-   mv /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}/docker-machine* /usr/local/bin/
-   rmdir /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+   curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine_linux-amd64
 fi
+chmod +x /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
+ln -sf /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} /usr/local/bin/docker-machine
 
 # we want nslookup 
 $PM install -y bind-utils
