@@ -1,6 +1,10 @@
 #!/bin/sh
 
 # this script must be run as privileged user
+if [ $(id -u) -ne 0 ] ; then
+   echo "Error : this script requires sudo"
+   exit 16
+fi
 
 set -e
 
@@ -18,8 +22,8 @@ echo "Will use http://${PROXY_HOST}:${PROXY_PORT} as the proxy to use with docke
 sed -i '/^HTTP_PROXY=/d' /etc/sysconfig/docker
 sed -i '/^HTTPS_PROXY=/d' /etc/sysconfig/docker
 
-echo "HTTP_PROXY=\"http://192.168.96.21:8002\"" >> /etc/sysconfig/docker
-echo "HTTPS_PROXY=\"$HTTP_PROXY\"" >> /etc/sysconfig/docker
+echo "export HTTP_PROXY=\"http://${PROXY_HOST}:${PROXY_PORT}\"" >> /etc/sysconfig/docker
+echo "export HTTPS_PROXY=\$HTTP_PROXY" >> /etc/sysconfig/docker
 
 # restart the docker service
 service docker restart
