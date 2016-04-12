@@ -96,6 +96,7 @@ $PM install -y httpd-tools pwgen
 # install yum-cron to enable automatic updates 
 yum -y install yum-cron
 perl -i -pe 's/^apply_updates = no/apply_updates = yes/' /etc/yum/yum-cron.conf
+perl -i -pe 's/^update_cmd = default/update_cmd = minimal-security/' /etc/yum/yum-cron.conf
 chkconfig yum-cron on
 systemctl restart yum-cron.service
 
