@@ -64,7 +64,7 @@ chkconfig docker on
 }
 
 # install docker-compose
-DOCKER_COMPOSE_VERSION=1.5.2
+DOCKER_COMPOSE_VERSION=1.6.2
 if test ! -f /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 then
    curl --fail -v -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
@@ -78,10 +78,10 @@ then
 fi
 
 # install docker-machine
-DOCKER_MACHINE_VERSION=0.5.6
+DOCKER_MACHINE_VERSION=0.6.0
 if test ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 then
-   curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine_linux-amd64
+   curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-`uname -s`-`uname -m`
 fi
 chmod +x /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 ln -sf /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} /usr/local/bin/docker-machine
