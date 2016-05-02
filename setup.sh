@@ -52,7 +52,7 @@ service ntpd restart
 # some basic network tools (not installed by default in CentOS minimal installation)
 $PM install -y net-tools nc
 
-$PM install -y docker-io
+$PM install -y docker-engine
 getent group docker || groupadd docker
 gpasswd -a ${USER} docker
 # start the docker service on boot
@@ -64,7 +64,7 @@ chkconfig docker on
 }
 
 # install docker-compose
-DOCKER_COMPOSE_VERSION=1.6.2
+DOCKER_COMPOSE_VERSION=1.7.0
 if test ! -f /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION}
 then
    curl --fail -v -o /usr/local/bin/docker-compose-${DOCKER_COMPOSE_VERSION} -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
@@ -78,7 +78,7 @@ then
 fi
 
 # install docker-machine
-DOCKER_MACHINE_VERSION=0.6.0
+DOCKER_MACHINE_VERSION=0.7.0
 if test ! -f /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 then
    curl --fail -v -o /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-`uname -s`-`uname -m`
