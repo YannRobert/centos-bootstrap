@@ -4,9 +4,6 @@
 
 set -e
 
-# set the system to use Europe/Paris timezone
-sudo ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
-
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 
