@@ -28,4 +28,3 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
 cat packages-list-desktop | xargs $PM install -y
 
 echo "Finished successfully"
-
