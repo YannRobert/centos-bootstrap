@@ -56,11 +56,11 @@ $PM install -y docker-engine
 getent group docker || groupadd docker
 gpasswd -a ${USER} docker
 # start the docker service on boot
-chkconfig docker on 
-{ 
-   systemctl start docker.service 
-} || { 
-   echo "docker.service failed to start (it may be normal on some VPS managed by OpenVZ)" 
+chkconfig docker on
+{
+   systemctl start docker.service
+} || {
+   echo "docker.service failed to start (it may be normal on some VPS managed by OpenVZ)"
 }
 
 # install docker-compose
@@ -86,14 +86,14 @@ fi
 chmod +x /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION}
 ln -sf /usr/local/bin/docker-machine-${DOCKER_MACHINE_VERSION} /usr/local/bin/docker-machine
 
-# we want nslookup 
+# we want nslookup
 $PM install -y bind-utils
 
 # install httpd-tools to get htpasswd
 # install pwgen to generate password
 $PM install -y httpd-tools pwgen
 
-# install yum-cron to enable automatic updates 
+# install yum-cron to enable automatic updates
 yum -y install yum-cron
 perl -i -pe 's/^apply_updates = no/apply_updates = yes/' /etc/yum/yum-cron.conf
 perl -i -pe 's/^update_cmd = default/update_cmd = minimal-security/' /etc/yum/yum-cron.conf
@@ -114,14 +114,4 @@ perl -i -pe 's/^#set bell-style none/set bell-style none/' /etc/inputrc
 # installing pip
 $PM install -y python-pip
 
-# upgrading pip
-pip install --upgrade pip
-
-# install the Amazon WebServices Command Line Interface
-pip install --upgrade awscli
-
-# install shyaml in order to read YAML files with shell command line (https://github.com/0k/shyaml)
-pip install --upgrade shyaml
-
 echo "Finished successfully"
-
