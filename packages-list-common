@@ -1,0 +1,16 @@
+fail2ban
+htop
+git
+mlocate
+curl
+wget
+unzip
+ntp
+net-tools
+nc
+docker-engine
+bind-utils
+httpd-tools
+pwgen
+yum-cron
+python-pip
