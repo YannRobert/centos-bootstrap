@@ -36,7 +36,7 @@ do
 done
 popd
 
-#./pip-download-packages.sh
-#./pip-install-packages.sh
+./pip-download-packages.sh
+./pip-install-packages.sh
 
 echo "Finished successfully"

@@ -4,9 +4,8 @@ set -x
 
 # install docker-compose into system files
 # the package must have been downloaded into subdirectory first
-
-mkdir -p ../downloaded_resources
-cd ../downloaded_resources
+mkdir -p ../downloaded_resources/docker-compose
+cd ../downloaded_resources/docker-compose
 
 DOCKER_COMPOSE_VERSION=1.8.0
 

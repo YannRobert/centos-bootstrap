@@ -3,8 +3,8 @@ set -e
 set -x
 
 # download docker-compose into a local subdirectory
-mkdir -p ../downloaded_resources
-cd ../downloaded_resources
+mkdir -p ../downloaded_resources/docker-compose
+cd ../downloaded_resources/docker-compose
 
 DOCKER_COMPOSE_VERSION=1.8.0
 

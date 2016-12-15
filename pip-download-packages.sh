@@ -1,5 +1,8 @@
 #!/bin/bash
 set -e
 set -x
-mkdir -p ./pip-packages
-pip download --dest ./pip-packages -r ./pip-packages-requirements.txt
+
+mkdir -p ./downloaded_resources/pip-packages
+cd ./downloaded_resources/pip-packages
+
+pip download --dest ./downloaded_resources/pip-packages -r ./pip-packages-requirements.txt

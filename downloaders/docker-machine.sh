@@ -3,8 +3,8 @@ set -e
 set -x
 
 # download docker-machine into a local subdirectory
-mkdir -p ../downloaded_resources
-cd ../downloaded_resources
+mkdir -p ../downloaded_resources/docker-machine
+cd ../downloaded_resources/docker-machine
 
 DOCKER_MACHINE_VERSION=0.8.1
 
