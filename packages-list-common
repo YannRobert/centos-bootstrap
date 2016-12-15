@@ -11,5 +11,4 @@ nc
 bind-utils
 httpd-tools
 pwgen
-yum-cron
 python-pip
