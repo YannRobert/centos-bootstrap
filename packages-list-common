@@ -8,7 +8,6 @@ unzip
 ntp
 net-tools
 nc
-docker-engine
 bind-utils
 httpd-tools
 pwgen

@@ -11,6 +11,9 @@ then
    PM=dnf
 fi
 
+DISTRIB_NAME=$(awk '{print $1}' /etc/redhat-release)
+
 cat packages-list-common | xargs $PM install -y
+cat packages-list-$DISTRIB_NAME | xargs $PM install -y
 
 echo "Finished successfully"

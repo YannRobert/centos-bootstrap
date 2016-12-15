@@ -37,4 +37,3 @@ chkconfig named on
 service named restart
 
 echo "Finished"
-
