@@ -10,4 +10,3 @@ then
 fi
 
 $PM makecache
-$PM update -y --downloadonly
