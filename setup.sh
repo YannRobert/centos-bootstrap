@@ -39,4 +39,6 @@ popd
 ./pip-download-packages.sh
 ./pip-install-packages.sh
 
+./npm-download-packages.sh
+
 echo "Finished successfully"

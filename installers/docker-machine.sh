@@ -4,7 +4,6 @@ set -x
 
 # install docker-machine into system files
 # the package must have been downloaded into subdirectory first
-
 mkdir -p ../downloaded_resources/docker-machine
 cd ../downloaded_resources/docker-machine
 
