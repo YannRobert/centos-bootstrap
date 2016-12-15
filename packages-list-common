@@ -12,3 +12,6 @@ bind-utils
 httpd-tools
 pwgen
 python-pip
+bind
+nodejs
+npm
