@@ -42,4 +42,3 @@ systemctl enable remote_syslog.service
 systemctl start remote_syslog.service
 
 echo "Success"
-

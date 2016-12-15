@@ -11,20 +11,6 @@ then
    PM=dnf
 fi
 
-rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm || true
-
-cat << EOF > /etc/yum.repos.d/google-chrome.repo
-[google-chrome]
-name=google-chrome - \$basearch
-baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch
-enabled=1
-gpgcheck=1
-gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
-EOF
-
-rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm || true
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
-
 cat packages-list-desktop | xargs $PM install -y
 
 echo "Finished successfully"
