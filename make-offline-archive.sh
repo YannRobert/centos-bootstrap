@@ -2,8 +2,23 @@
 set -e
 set -x
 
-tar cvfz downloaded_resources.tar.gz downloaded_resources
+if test -f downloaded_resources
+then
+  tar cvfz downloaded_resources.tar.gz downloaded_resources
+fi
 
-tar cvfz yum-cache.tar.gz /var/cache/yum
+TARGET_DIR=$(pwd)
 
-tar cvfz dnf-cache.tar.gz /var/cache/dnf
+if test -d /var/cache/dnf
+then
+  pushd /var/cache/
+  tar cvfz $TARGET_DIR/yum-cache.tar.gz yum
+  popd
+fi
+
+if test -d /var/cache/dnf
+then
+  pushd /var/cache/
+  tar cvfz $TARGET_DIR/dnf-cache.tar.gz dnf
+  popd
+fi
