@@ -9,7 +9,7 @@ fi
 
 TARGET_DIR=$(pwd)
 
-if test -d /var/cache/dnf
+if test -d /var/cache/yum
 then
   pushd /var/cache/
   tar cvfz $TARGET_DIR/yum-cache.tar.gz yum
