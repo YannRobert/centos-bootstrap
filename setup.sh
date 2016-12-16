@@ -8,6 +8,19 @@
 set -e
 set -x
 
+
+OFFLINE=0
+
+while test $# -gt 0; do
+    case "$1" in
+       --offline)
+            OFFLINE=1
+            shift
+            ;;
+    esac
+done
+
+
 DISTRIB_NAME=$(awk '{print $1}' /etc/redhat-release)
 
 # copy repo files to yum.repos.d directory
@@ -15,12 +28,16 @@ DISTRIB_NAME=$(awk '{print $1}' /etc/redhat-release)
 find repos-$DISTRIB_NAME -name "*.repo" -exec cp {} /etc/yum.repos.d \;
 find repos-$DISTRIB_NAME -name "RPM-GPG*" -exec cp {} /etc/pki/rpm-gpg/ \;
 
-pushd ./downloaders
-for LOCAL_SCRIPT in $(ls *.sh)
-do
-  ./$LOCAL_SCRIPT
-done
-popd
+# if we are not doing an offline setup then we may use the downloaders ...
+if test $OFFLINE -eq 0
+then
+  pushd ./downloaders
+  for LOCAL_SCRIPT in $(ls *.sh)
+  do
+    ./$LOCAL_SCRIPT
+  done
+  popd
+fi
 
 pushd ./installers
 for LOCAL_SCRIPT in $(ls *.sh)
@@ -36,9 +53,21 @@ do
 done
 popd
 
-./pip-download-packages.sh
+# pip and npm commands may not be available before installers are run
+# so we have to use them AFTER installers are run
+
+# if we are not doing an offline setup then we may download pip packages ...
+if test $OFFLINE -eq 0
+then
+  ./pip-download-packages.sh
+fi
+
 ./pip-install-packages.sh
 
-./npm-download-packages.sh
+# if we are not doing an offline setup then we may download node modules ...
+if test $OFFLINE -eq 0
+then
+  ./npm-download-packages.sh
+fi
 
 echo "Finished successfully"
