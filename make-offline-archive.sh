@@ -2,7 +2,7 @@
 set -e
 set -x
 
-if test -f downloaded_resources
+if test -d downloaded_resources
 then
   tar cvfz downloaded_resources.tar.gz downloaded_resources
 fi
