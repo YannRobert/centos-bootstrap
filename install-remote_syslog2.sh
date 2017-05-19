@@ -10,7 +10,7 @@ fi
 TARGET_FILE=remote_syslog_linux_amd64.tar.gz
 ARCHIVE_URL=https://github.com/papertrail/remote_syslog2/releases/download/v0.16/${TARGET_FILE}
 
-wget $ARCHIVE_URL
+wget -O ${TARGET_FILE} $ARCHIVE_URL
 #curl -o ${TARGET_FILE} ${ARCHIVE_URL}
 
 tar -xvf ${TARGET_FILE}
